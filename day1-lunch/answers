@@ -35,3 +35,23 @@ stop_codon
 three_prime_utr
 transcript
 there are 538689 lines
+  160188
+  160188
+       4
+  407287
+   46060
+  538685
+   30389
+  538685
+   33034
+  521125
+CDS 160188
+       4
+Selenocysteine 4
+exon 407287
+five_prime_utr 46060
+gene 538685
+start_codon 30389
+stop_codon 30296
+three_prime_utr 33034
+transcript 521125
