@@ -9,5 +9,4 @@ samtools view -bS ~/data/day1/SRR072893.sam -o ~/data/day1/SRR072893.bam
 samtools sort ~/data/day1/SRR072893.bam -o ~/data/day1/SRR072893.sorted.bam
 samtools index -b ~/data/day1/SRR072893.sorted.bam
 
-stringtie ~/data/day1/SRR072893.sorted.bam -p 4
 stringtie ~/data/day1/SRR072893.sorted.bam -p 4 -e -G ~/data/BDGP6/BDGP6.Ensembl.85.gtf -o ~/data/day1/SRR072893.gtf -B
