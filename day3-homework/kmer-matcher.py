@@ -36,7 +36,36 @@ for ident, sequence in fasta.FASTAReader( target_fasta):
             break
 
 
+#part2
+answer_dic = {}
+for query_ident, query_sequence in fasta.FASTAReader(query_fasta_2): 
+    for gene in target_gene: 
+        for kmer in target_gene[gene]: 
+            if kmer in kmer_query: 
+                for target_start in target_gene[gene][kmer]: 
+                    for query_start in kmer_query[kmer]: 
+                        target_start = int(target_start)
+                        query_start = int(query_start)
+                        query_end = int(query_start) + k 
+                        target_end = int(target_start) + k
+                        match = True
 
+                        while match == True:
+                            query_end += 1
+                            target_end += 1
+                            query_match = query_sequence[query_start:query_end]
+                            target_match = target_dict[gene][target_start:target_end]
+                            if query_match == target_match:
+                                element = [query_start, target_start]
+                                if target_match not in answer_dic:
+                                    answer_dic[target_match] = [element]
+                                answer_dic[target_match].append(element)
+                            else:
+                                match = False
+
+                         
+for i in sorted(answer_dic, key=lambda i: len(i), reverse = True):
+    print i
     
             
 
