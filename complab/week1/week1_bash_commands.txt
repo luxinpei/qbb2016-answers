@@ -1,0 +1,9 @@
+$ blastn -db nr -query week1_query.fa -evalue 0.0001 -max_target_seqs 1000 -remote -outfmt "6 sseqid qstart qend sseq"  > alignment.out 
+# running the blast file
+
+awk '$2 == 1 {print ">"$1"\t"$3"\t"$4}' alignment.out | sed 's| - ||g' | awk '$2 == 10293 {print $1"\n"$3}' > alignment.fa
+#converting to fa file and getting rid of gaps
+
+transeq alignment.fa codon.fa
+
+mafft codon.fa > mafft.out
