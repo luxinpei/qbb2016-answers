@@ -1,0 +1,27 @@
+All commands and time for sample set low coverage
+
+velveth Assem 31 -shortPaired -fastq -separate reads_low_1.fastq reads_low_2.fastq 
+real	0m0.159s
+user	0m0.075s
+sys	0m0.061s
+
+velvetg Assem > velvetg
+real	0m0.062s
+user	0m0.042s
+sys	0m0.006s
+
+time spades.py -1 reads_low_1.fastq -2 reads_low_2.fastq -o spadesoutput
+real	0m6.121s
+user	0m8.032s
+sys	0m1.142s
+
+lastz reference.fasta[unmask] contigs.fa --chain --rdotplot=velvet_dotplot
+
+R dotplot
+velvet=read.table("/Users/cmdb/qbb2016-answers/complab/week2/Assem/velvet_dotplot", header = T)
+plot.default(velvet)
+
+spades=read.table("/Users/cmdb/qbb2016-answers/complab/week2/spadesoutput/spades_dotplot", header = T)
+plot.default(spades)
+
+quast.py contigs_high.fa contigs.fa contigs_spades.fasta contigs_spadeshigh.fasta 
