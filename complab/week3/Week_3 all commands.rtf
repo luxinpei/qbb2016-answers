@@ -1,0 +1,34 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 AndaleMono;}
+{\colortbl;\red255\green255\blue255;\red242\green242\blue242;}
+\margl1440\margr1440\vieww15600\viewh8760\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+bwa index ref.fa \
+\
+\
+cat [chr4 file] [chr7 file] [chr11 file] > reference.fa\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\fs26 \cf2 \cb0 \kerning1\expnd0\expndtw0 \CocoaLigature0 bwa mem -R'@RG\\tID:foo\\tSM:bar1449' -aCHMpP reference.fa 1449_002_LA.region.fq > alignm_1449.sam\
+\
+bwa mem -R'@RG\\tID:foo\\tSM:bar1526' -aCHMpP reference.fa 1526_007_LA.region.fq > alignm_1526.sam\
+\
+bwa mem -R'@RG\\tID:foo\\tSM:bar1526' -aCHMpP reference.fa 183-005-NB.region.fq > alignm_183.sam\
+\
+\
+samtools sort alignm_183.sam > 183.sorted.bam\
+samtools index 183.sorted.bam\
+\
+freebayes in the freebayes directory\
+bin/freebayes -f ~/qbb2016-answers/complab/week3/chd/reference.fa ~/qbb2016-answers/complab/week3/chd/183.sorted.bam > 183.vcf\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 bin/freebayes --min-coverage 5 -f ~/qbb2016-answers/complab/week3/chd/reference.fa ~/qbb2016-answers/complab/week3/chd/183.sorted.bam > 183sorted.vcf\
+\
+snpEff databases | grep "musculus"\
+snpEff GRCm38.82 ~/qbb2016-answers/complab/week3/freebayes/183sorted.vcf > snpeff183\
+\
+}
