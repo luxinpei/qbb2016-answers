@@ -1,0 +1,11 @@
+> hifive 5c-complete <SUBCOMMAND> [-h] [-r RE] [-g GENOME]
+      (-B BAM BAM | -C COUNT) [-f MININT] [-m MINDIST] [-x MAXDIST]
+      [-r REGIONS] (-o OUTPUT OUTPUT OUTPUT | -P PREFIX) [-q]
+      [normalization options] bed
+      
+      
+> hifive 5c-complete express -B -o fragment fiveCdata FiveC -P Nora_Primers.bed
+
+hifive 5c-complete express -P Nora -C Nora_ESC_male_E14.counts Nora_Primers.bed
+hifive 5c-heatmap Nora.fcp fragment.heat -i fragment.png -d fragment
+hifive 5c-heatmap Nora.fcp enrichment.heat -i enrichment.png -d enrichment
