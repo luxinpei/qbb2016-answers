@@ -38,5 +38,5 @@ macs2 callpeak -t ER4.SAM -c inputER4.SAM -n ER4
 awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"}' ER4_peaks.narrowPeak > ER4first6fields.txt 
 awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"}' G1E_peaks.narrowPeak > G1Efirst6fields.txt 
 
-/usr/local/opt/meme/bin/meme-chip er4_filtered_100.fa -meme-maxw 20 -o er4_motif.out
-/usr/local/opt/meme/bin/meme-chip er4_filtered_100.fa -meme-maxw 20 -db JASPAR_CORE_2016.meme -o er4_motif_output.out
+./memeout.py
+/usr/local/opt/meme/bin/meme-chip -db motif_databases/JASPAR/JASPAR_CORE_2016.meme -meme-maxw 20 er4.fasta 
