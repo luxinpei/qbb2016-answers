@@ -1,0 +1,50 @@
+df= read.delim("~/qbb2016-answers/complab/week11/hema_data.txt", header=T)
+
+d <- dist(df, method = "euclidean") 
+fit <- hclust(d, method="complete") 
+plot(fit)
+hc_df = hclust(df,method = "complete")
+
+rownames(df) <- df$gene
+df_matrix <- as.matrix(df[2:7])
+heatmap(df_matrix)
+
+library("ggplot2")
+ggplot(df, aes(CFU, poly, color =df_cluster$cluster)) +geom_point()
+
+set.seed(20)
+df_cluster <- kmeans(df[, 2:3], 3, nstart = 20)
+df_cluster
+
+df_cluster$cluster <- as.factor(df_cluster$cluster)
+
+df$early <- ave(df$CFU, df$mys)
+df$late <- ave(df$poly, df$unk)
+df$ratio <- (df$late/df$early)
+
+diff_gene1 <- df[df$ratio > 2 | df$ratio < .5, ]
+
+diff_gene$CFU <- NULL
+diff_gene$gene <- NULL
+diff_gene$poly <- NULL
+diff_gene$unk <- NULL
+diff_gene$int <- NULL
+diff_gene$mys <- NULL
+diff_gene$mid <- NULL
+diff_gene$early <- NULL
+diff_gene$late <- NULL
+
+t.test(diff_gene1$early, diff_gene1$late, paired = T)
+
+	Paired t-test
+
+data:  diff_gene1$early and diff_gene1$late
+t = 0.18625, df = 294, p-value = 0.8524
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.4059439  0.4908098
+sample estimates:
+mean of the differences 
+             0.04243294 
+
+write.table(diff_gene, "~/qbb2016-answers/complab/week11/diff_gene.txt", sep="\t")
